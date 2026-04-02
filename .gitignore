@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[oc]
+*.pyo
+
+# Build / dist
+build/
+dist/
+wheels/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# uv
+uv.lock
+.python-version
+
+# 一時ファイル・処理中間物
+tmp_sbs.mp4
+tmp_sbs_audio.mp4
+
+# 動画ファイル（大容量なのでGit管理対象外）
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
