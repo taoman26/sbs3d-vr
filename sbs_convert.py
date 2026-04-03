@@ -116,13 +116,15 @@ def convert_for_skybox(input_path, output_path):
         "[L]crop=trunc(ih*3/2/2)*2:ih:(iw-trunc(ih*3/2/2)*2)/2:0[LC];"
         "[R]crop=trunc(ih*3/2/2)*2:ih:(iw-trunc(ih*3/2/2)*2)/2:0[RC];"
         # ③ 各眼を独立して equirectangular へ変換
-        "[LC]v360=input=flat:output=equirect:h_fov=90:v_fov=60[LE];"
-        "[RC]v360=input=flat:output=equirect:h_fov=90:v_fov=60[RE];"
+        "[LC]v360=input=flat:output=equirect:h_fov=90:v_fov=70[LE];"
+        "[RC]v360=input=flat:output=equirect:h_fov=90:v_fov=70[RE];"
+        "[LE]scale=iw:trunc(ih*1.5/2)*2[LES];"
+        "[RE]scale=iw:trunc(ih*1.5/2)*2[RES];"
         # ④ 上下に黒帯を追加して 1:1 に（VR180規格: 各眼が正方形、全体2:1）
         #    3:2クロップ後は iw > ih なので pad=iw:iw:0:(iw-ih)/2 で上下追加
         #    例: 1620x1080 → 1620x1620
-        "[LE]pad=iw:iw:0:(iw-ih)/2[LEP];"
-        "[RE]pad=iw:iw:0:(iw-ih)/2[REP];"
+        "[LES]pad=iw:iw:0:(iw-ih)/2[LEP];"
+        "[RES]pad=iw:iw:0:(iw-ih)/2[REP];"
         # ⑤ SBS 再結合（出力例: 3840x1920 = 標準VR180形式）
         "[LEP][REP]hstack[OUT]"
     )
