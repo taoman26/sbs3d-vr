@@ -23,17 +23,29 @@ output_sbs.mp4  ← SKYBOX「180度 / 3D SBS」で視聴
 ## 動作環境
 
 - Python 3.10+
-- ffmpeg（システムにインストール済みであること）
+- **ffmpeg 6**（バージョン 6 が必須）
 - CPU動作（GPU不要）
 
-### ffmpeg のインストール
+### ffmpeg 6 のインストール
+
+> **注意:** `sudo apt install ffmpeg` でインストールされるバージョンは Ubuntu のリリースによって異なります。  
+> バージョン 6 が提供されていない場合は、以下の方法で明示的に指定してください。
 
 ```bash
-# Ubuntu / Debian
+# Ubuntu 24.04 の場合（apt で ffmpeg 6 が入る）
+sudo apt install ffmpeg
+
+# Ubuntu 22.04 などで ffmpeg 6 が入らない場合（ppa を使用）
+sudo add-apt-repository ppa:ubuntuhandbook1/ffmpeg6
+sudo apt update
 sudo apt install ffmpeg
 
 # macOS (Homebrew)
-brew install ffmpeg
+brew install ffmpeg@6
+brew link ffmpeg@6 --force
+
+# バージョン確認
+ffmpeg -version  # "ffmpeg version 6.x" と表示されること
 ```
 
 ---
